@@ -1,0 +1,50 @@
+    3  rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+    4  rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+    5  yum --enablerepo=remi install mysql mysql-server
+    6  service mysqld start
+    7  yum --enablerepo=remi,remi-php55 install php php-mysql php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml php-cli php-pear php-pdo php-devel php-soap php-fpm php-bcmath php-ldap php-intl
+    8  yum --enablerepo=remi install pcre-devel openssl openssl-devel
+    9  mkdir /var/source
+   10  cd /var/source/
+   11  wget http://nginx.org/download/nginx-1.8.0.tar.gz
+   12  yum install wget
+   13  wget http://nginx.org/download/nginx-1.8.0.tar.gz
+   14  tar -xvzf nginx-1.6.2.tar.gz
+   15  cd ..
+   16  yum install git
+   17  ls
+   18  cd source/
+   19  ls
+   20  git clone https://github.com/alibaba/nginx-http-concat.git
+   21  ls
+   22  cd nginx-1.4.7
+   23  ./configure --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx.pid --lock-path=/var/lock/nginx.lock --http-log-path=/var/log/nginx/access.log --http-client-body-temp-path=/etc/nginx/lib/body --http-proxy-temp-path=/etc/nginx/lib/proxy --without-http_empty_gif_module --without-http_map_module --without-http_memcached_module --without-http_scgi_module --without-http_split_clients_module --without-http_ssi_module --without-http_userid_module --without-http_uwsgi_module --without-http_browser_module --without-http_geo_module --without-http_limit_req_module --without-http_limit_conn_module --without-http_upstream_ip_hash_module --with-http_gzip_static_module --with-http_ssl_module --add-module=../nginx-http-concat
+   24  yum -y install pcre-devel openssl openssl-devel
+   25  yum install gcc
+   26  ./configure --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx.pid --lock-path=/var/lock/nginx.lock --http-log-path=/var/log/nginx/access.log --http-client-body-temp-path=/etc/nginx/lib/body --http-proxy-temp-path=/etc/nginx/lib/proxy --without-http_empty_gif_module --without-http_map_module --without-http_memcached_module --without-http_scgi_module --without-http_split_clients_module --without-http_ssi_module --without-http_userid_module --without-http_uwsgi_module --without-http_browser_module --without-http_geo_module --without-http_limit_req_module --without-http_limit_conn_module --without-http_upstream_ip_hash_module --with-http_gzip_static_module --with-http_ssl_module --add-module=../nginx-http-concat
+   27  make
+   28  make install
+   29  cd /etc/nginx
+   30  mkdir lib
+   31  cd lib/
+   32  mkdir body proxy
+   33  cd /etc/init.d
+   34  vi nginx
+   35  chmod +x /etc/init.d/nginx
+   36  chkconfig nginx on
+   37  chkconfig php-fpm on
+   38  chkconfig mysqld on
+   39  service nginx start
+   40  usermod -a -G nginx nginx
+   41  adduser -g nginx
+   42  adduser nginx
+   43  useradd -g nginx nginx
+   44  useradd -G nginx nginx
+   45  groups nginx
+   46  cd /etc/php-fpm.d/
+   47  l
+   48  ls
+   49  vi www.conf 
+   yum --enablerepo=remi install memcached
+   yum --enablerepo=remi install redis
+
